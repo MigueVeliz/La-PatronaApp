@@ -7,6 +7,7 @@ import {
     Image,
     Dimensions,
     Linking,
+    Platform,
 } from 'react-native';
 
 import { Card, ListItem, Button, } from 'react-native-elements'
@@ -82,7 +83,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
+                                    Linking.openURL(restaurant.business_address)
                                 }
                                 style={styles.socialNetwork}
                             />
@@ -96,7 +97,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
+                                    Linking.openURL(Platform.OS === 'android' ? Platform.OS = `tel:${restaurant.phonenumber}` : Platform.OS = `telprompt:${restaurant.phonenumber}`)
                                 }
                                 style={styles.socialNetwork}
                             />
@@ -108,13 +109,9 @@ class SingleRestaurant extends Component {
                                 name="ios-time"
                                 size={iconSize}
                                 color="blue"
-                                // onPress={this.shareToFacebook}
-                                onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
-                                }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {restaurant.daybusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {restaurant.daybusinesshours === '' ? "N/A" : restaurant.daybusinesshours}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -122,13 +119,9 @@ class SingleRestaurant extends Component {
                                 name="ios-time"
                                 size={iconSize}
                                 color="blue"
-                                // onPress={this.shareToFacebook}
-                                onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
-                                }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {restaurant.nightbusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {restaurant.nightbusinesshours === '' ? "N/A": restaurant.nightbusinesshours}</Text>
 
                         </View>
 
@@ -139,7 +132,7 @@ class SingleRestaurant extends Component {
                                 color="green"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
+                                    Linking.openURL(restaurant.website)
                                 }
                                 style={styles.socialNetwork}
                             />
@@ -153,7 +146,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
+                                    Linking.openURL('https://www.facebook.com/' + restaurant.facebook)
                                 }
                                 style={styles.socialNetwork}
                             />
@@ -168,7 +161,7 @@ class SingleRestaurant extends Component {
                                 color="purple"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/la.patrona.96995')
+                                    Linking.openURL('https://www.instagram.com/' + restaurant.instagram)
                                 }
                                 style={styles.socialNetwork}
                             />
@@ -234,7 +227,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir-Medium',
     },
     bioTextStyle: {
-        fontSize: 14
+        fontSize: 15
     },
     otherInfoTextStyle: {
         fontSize: 16
@@ -245,6 +238,7 @@ const styles = StyleSheet.create({
         width: itemWidth - 40,
         height: 130,
         alignSelf: 'center',
+        marginBottom: 30,
         marginTop: 30,
 
         shadowColor: "#000",
@@ -261,9 +255,6 @@ const styles = StyleSheet.create({
         width: itemWidth - 40,
         height: 130,
         alignSelf: 'center',
-        // marginTop: 30,
-
-
     }
 
 });

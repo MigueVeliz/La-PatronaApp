@@ -108,6 +108,8 @@ export default class MainScreen extends Component {
       phoneNumber = 'telprompt:${5518007012}';
     }
 
+    // phoneNumber === 'android' ? phoneNumber = 'tel:${5518007012}' : phoneNumber = 'telprompt:${5518007012}';
+
     Linking.openURL(phoneNumber);
   };
 
