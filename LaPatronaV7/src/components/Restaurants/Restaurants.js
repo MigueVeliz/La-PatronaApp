@@ -41,7 +41,7 @@ class Restaurants extends Component {
                             // icon={<Icon name='code' color='#ffffff' />}
                             buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
                             title='VER'
-                            onPress={() => this.props.navigation.push('SingleRestaurant', restaurant)}
+                            onPress={() => this.props.navigation.push('SingleRestaurant', restaurant )}
                         />
                     </Card>
                 </View>
