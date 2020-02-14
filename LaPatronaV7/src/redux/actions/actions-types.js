@@ -1,0 +1,2 @@
+export const HIDE_MINI_PLAYER = "HIDE_MINI_PLAYER";
+export const SHOW_MINI_PLAYER = "SHOW_MINI_PLAYER";

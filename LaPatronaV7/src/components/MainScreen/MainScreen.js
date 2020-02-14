@@ -20,71 +20,57 @@ import {
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
-import Video from 'react-native-video';
+// import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Ionicons';
-import CountDown from 'react-native-countdown-component';
+// import CountDown from 'react-native-countdown-component';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
 import MiniPlayer from '../MiniPlayer/MiniPlayer';
 
-const moment = extendMoment(Moment);
+// const moment = extendMoment(Moment);
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-export default class MainScreen extends Component {
+class MainScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hideCounter: true,
-      color: '#008f68',
-      timeTillOpening: 0,
-      showPause: false,
-      showPlay: true,
-      track: {
-        id: '1', // Must be a string, required
-        url: 'http://stream.radiojar.com/t48bnn1z4mzuv.mp3',
-        url2:
-          'https://mi-musica-app.s3.amazonaws.com/songs/NewDashboard/Sonido Fania 97/ESTRENO MUY ROMANTICO 2020 (( POR TI VOLVERE )) COLONIA JORGE MURAD SONIDO FANIA 97 - 13 DICIEMBRE.mp3', // Load media from the network
-        title: 'Avaritia',
-        artist: 'deadmau5',
-        album: 'while(1<2)',
-        genre: 'Progressive House, Electro House',
-        date: '2014-05-20T07:00:00+00:00', // RFC 3339
+      // hideCounter: true,
+      // color: '#008f68',
+      // timeTillOpening: 0,
+      // showPause: false,
+      // showPlay: true,
+      // track: {
+      //   id: '1', // Must be a string, required
+      //   url: 'http://stream.radiojar.com/t48bnn1z4mzuv.mp3',
+      //   url2:
+      //     'https://mi-musica-app.s3.amazonaws.com/songs/NewDashboard/Sonido Fania 97/ESTRENO MUY ROMANTICO 2020 (( POR TI VOLVERE )) COLONIA JORGE MURAD SONIDO FANIA 97 - 13 DICIEMBRE.mp3', // Load media from the network
+      //   title: 'Avaritia',
+      //   artist: 'deadmau5',
+      //   album: 'while(1<2)',
+      //   genre: 'Progressive House, Electro House',
+      //   date: '2014-05-20T07:00:00+00:00', // RFC 3339
 
-        artwork:
-          'https://mi-musica-app.s3.amazonaws.com/images/SongsImages/SonidoFania97SongImage.jpg', // Load artwork from the network
-      },
-      paused: true,
+      //   artwork:
+      //     'https://mi-musica-app.s3.amazonaws.com/images/SongsImages/SonidoFania97SongImage.jpg', // Load artwork from the network
+      // },
+      // paused: true,
     };
   } // end of constructor
 
   componentDidMount() {
     SplashScreen.hide();
-
-    const start = new Date();
-    const end = new Date(2020, 1, 3);
-    const timeInterval = '2020-02-08T05:00:00+00:00'; //Viernes Feb 7 11:59pm
-    const range = moment.range(start, timeInterval);
-
-    this.setState({ timeTillOpening: range.valueOf() / 1000 });
   } // end of componentDidMount
 
-  playStream = () => {
-    this.setState({ paused: false, showPlay: false });
-  };
+  // playStream = () => {
+  //   this.setState({ paused: false, showPlay: false });
+  // };
 
-  resumePlaying = () => { };
+  // resumePlaying = () => { };
 
-  pauseStream = () => {
-    this.setState({ paused: true, showPlay: true });
-  };
+  // pauseStream = () => {
+  //   this.setState({ paused: true, showPlay: true });
+  // };
 
   shareToFacebook = () => {
     Share.share(
@@ -247,3 +233,6 @@ const styles = StyleSheet.create({
 
 
 });
+
+
+export default MainScreen;

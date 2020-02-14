@@ -7,12 +7,21 @@ import {
     Dimensions,
 } from 'react-native';
 
+//Redux Goodies
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import miniPlayerReducer from './src/redux/reducers/miniPlayerReducer';
+
+
 import TabNavigator from './src/navigation/TabNavigator';
 import SplashScreen from 'react-native-splash-screen';
 // import SafeAreaView from 'react-native-safe-area-view';
 
 import MiniPlayer from './src/components/MiniPlayer/MiniPlayer';
 
+// const reducer = combineReducers({miniPlayerReducer})
+const reducer = miniPlayerReducer;
+const store = createStore(reducer)
 
 class App extends Component {
     constructor(props) {
@@ -30,12 +39,14 @@ class App extends Component {
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
-                <TabNavigator />
-                <View style={styles.miniPlayerContainerView}>
-                    <MiniPlayer />
-                </View>
-            </SafeAreaView>
+            <Provider store={store}>
+                <SafeAreaView style={styles.container}>
+                    <TabNavigator />
+                    <View style={styles.miniPlayerContainerView}>
+                        <MiniPlayer />
+                    </View>
+                </SafeAreaView>
+            </Provider>
         );
     }
 }

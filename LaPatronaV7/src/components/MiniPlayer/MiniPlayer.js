@@ -10,6 +10,10 @@ import {
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+// Redux Goodies
+import { connect } from 'react-redux';
+import { hideMiniPlayer, showMiniPlayer } from '../../redux/actions/index';
+
 class MiniPlayer extends Component {
     constructor(props) {
         super(props);
@@ -38,7 +42,7 @@ class MiniPlayer extends Component {
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.playButtonContainerStyle}>
-                    <View style={styles.player}>
+                    {/* <View style={styles.player}>
                         {this.state.showPlay ? (
                             <Icon
                                 name="ios-play"
@@ -54,7 +58,29 @@ class MiniPlayer extends Component {
                                     onPress={this.pauseStream}
                                 />
                             )}
-                    </View>
+                    </View> */}
+                    {
+                        this.props.showMiniPlayer ?
+                            <View style={styles.player}>
+                                {this.props.showPlay ? (
+                                    <Icon
+                                        name="ios-play"
+                                        size={40}
+                                        color="red"
+                                        onPress={this.playStream}
+                                    />
+                                ) : (
+                                        <Icon
+                                            name="ios-pause"
+                                            size={40}
+                                            color="red"
+                                            onPress={this.pauseStream}
+                                        />
+                                    )}
+                            </View>
+                            : null
+                        
+                    }
 
                     <View>
                         <Video
@@ -99,8 +125,25 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0,
         right: 0,
-      },
+    },
 
 });
 
-export default MiniPlayer;
+const mapStateToProps = state => ({
+    showPlay: state.showPlay,
+    showMiniPlayer: state.showMiniPlayer
+})
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onShowMiniPlayer: miniPlayer => {
+            dispatch(showMiniPlayer(miniPlayer));
+        },
+        onHideMiniPlayer: miniPlayer => {
+            dispatch(hideMiniPlayer(miniPlayer));
+        }
+    }
+
+}// end of mapDispatchToProps
+
+export default connect(mapStateToProps, mapDispatchToProps)(MiniPlayer);

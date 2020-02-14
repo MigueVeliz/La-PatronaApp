@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // Stack Navigators For Each Category
 import MainScreen from '../components/MainScreen/MainScreen'
+import MainScreenV2 from '../components/MainScreen/MainScreenV2'
 import RestaurantsStackNavigator from '../components/Restaurants/RestaurantsStackNavigator';
 import EntertainmentStackNavigator from '../components/Entertainment/EntertainmentStackNavigator';
 import NightClubsStackNavigator from '../components/NightClubs/NightClubsStackNavigator';
@@ -47,7 +48,7 @@ export default function App() {
                     inactiveTintColor: 'gray',
                 }}
             >
-                <Tab.Screen name="Home" component={MainScreen} />
+                <Tab.Screen name="Home" component={MainScreenV2} />
                 <Tab.Screen name="Restaurantes" component={RestaurantsStackNavigator} />
                 <Tab.Screen name="Entretenimiento" component={EntertainmentStackNavigator} />
                 <Tab.Screen name="NightClubs" component={NightClubsStackNavigator} />
