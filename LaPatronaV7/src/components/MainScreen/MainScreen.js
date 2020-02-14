@@ -16,6 +16,7 @@ import {
   Button,
   Share,
   Linking,
+  Dimensions,
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
@@ -25,7 +26,7 @@ import CountDown from 'react-native-countdown-component';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
 
-import MiniPlayer from './MiniPlayer/MiniPlayer'
+import MiniPlayer from '../MiniPlayer/MiniPlayer';
 
 const moment = extendMoment(Moment);
 
@@ -130,13 +131,13 @@ export default class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.topLogoView}>
+          <Image
+            style={styles.topLogo}
+            source={{ uri: 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/mImUSICApng.png' }}
+          />
+        </View>
         <View style={styles.logoContainer}>
-          <View style={styles.topLogoView}>
-            <Image
-              style={styles.topLogo}
-              source={{ uri: 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/mImUSICApng.png' }}
-            />
-          </View>
           <Image
             style={styles.logo}
             source={{
@@ -184,47 +185,17 @@ export default class MainScreen extends Component {
           />
         </View>
 
-        {/* <MiniPlayer /> */}
+        <View style={styles.playerButtonContainer}>
 
-        {/* <View style={styles.player}>
-          {this.state.showPlay ? (
-            <Icon
-              name="ios-play"
-              size={40}
-              color="red"
-              onPress={this.playStream}
-            />
-          ) : (
-              <Icon
-                name="ios-pause"
-                size={40}
-                color="red"
-                onPress={this.pauseStream}
-              />
-            )}
         </View>
-
-        <View>
-          <Video
-            source={{ uri: this.state.track.url }} // Can be a URL or a local file.
-            ref={ref => {
-              this.player = ref;
-            }} // Store reference
-            paused={this.state.paused}
-            playInBackground={true}
-            playWhenInactive={true}
-            ignoreSilentSwitch="ignore"
-            onBuffer={this.onBuffer} // Callback when remote video is buffering
-            onError={this.videoError} // Callback when video cannot be loaded
-            style={styles.backgroundVideo}
-          />
-        </View> */}
-
 
       </View>
     );
   }
 }
+
+const { width, height } = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
   container: {
@@ -233,76 +204,31 @@ const styles = StyleSheet.create({
     // backgroundColor: '#16202f'
   },
   topLogoView: {
-    flex: 2,
+    flex: 1,
     // backgroundColor: 'gray',
-
+    alignSelf: 'center'
   },
   topLogo: {
     width: 180,
     height: 70,
     resizeMode: 'contain',
     // backgroundColor: 'blue',
-
-  },
-  titleContainer: {
-    flex: 3,
-    // justifyContent: "center",
-    // alignItems: "center",
-    // backgroundColor: 'blue',
-  },
-  title: {
-    textAlign: 'center',
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#1c2a3c',
-    marginTop: 20,
   },
   logoContainer: {
-    flex: 7,
-    // backgroundColor: 'white',
+    flex: 4,
+    // backgroundColor: 'red',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 45,
   },
   logo: {
-    width: 350,
-    height: 300,
-  },
-  countDownContainer: {
-    flex: 2,
-    // backgroundColor: "lightgray",
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  countDownTimer: {
-    // backgroundColor: 'red',
-    marginTop: 15,
-  },
-  countDownTitle: {
-    fontSize: 20,
-    // marginTop: 15,
-    color: 'black',
-    // marginTop: 15
-  },
-  innerCountDownComponent: {
-    // backgroundColor: 'pink',
-    width: 350,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  singleComponent: {
-    // backgroundColor: 'red',
-    alignItems: 'center',
-  },
-  innerTextNumber: {
-    fontSize: 30,
-  },
-  innerTextWord: {
-    fontSize: 15,
+    // width: 350,
+    width: width - 40,
+    height: 250,
   },
   socialNetworksContainer: {
     flex: 2,
-    // width: 100,
+    width: width - 150,
     // backgroundColor: 'purple',
     justifyContent: 'space-around',
     flexDirection: 'row',
@@ -311,32 +237,13 @@ const styles = StyleSheet.create({
     // flexWrap: 'wrap'
   },
   socialNetwork: {
-    marginRight: 20,
+    // marginRight: 20,
   },
-  comingSoonText: {
-    alignSelf: 'center',
-    fontSize: 20,
+  playerButtonContainer: {
+    flex: 1,
+    // backgroundColor: 'pink',
+
   },
-  player: {
-    flex: 3,
-    // backgroundColor: 'red',
-    // borderRadius: 1,
-    // borderWidth: 0.8,
-    borderColor: 'black',
-    justifyContent: 'space-around',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: 'black',
-  },
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
+
+
 });

@@ -3,12 +3,15 @@ import {
     StyleSheet,
     Text,
     View,
-    SafeAreaView
+    SafeAreaView,
+    Dimensions,
 } from 'react-native';
 
 import TabNavigator from './src/navigation/TabNavigator';
 import SplashScreen from 'react-native-splash-screen';
 // import SafeAreaView from 'react-native-safe-area-view';
+
+import MiniPlayer from './src/components/MiniPlayer/MiniPlayer';
 
 
 class App extends Component {
@@ -29,10 +32,15 @@ class App extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <TabNavigator />
+                <View style={styles.miniPlayerContainerView}>
+                    <MiniPlayer />
+                </View>
             </SafeAreaView>
         );
     }
 }
+
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -40,13 +48,12 @@ const styles = StyleSheet.create({
         // backgroundColor: '#fff',
         // backgroundColor: '#16202f'
     },
-    textStyle: {
-        color: 'black',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        fontSize: 30,
-    }
+    miniPlayerContainerView: {
+        // height: 65,
+        width: width,
+        position: 'absolute',
+        marginTop: height - 165
+    },
 
 });
 

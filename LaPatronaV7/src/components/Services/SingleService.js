@@ -14,17 +14,13 @@ import { Card, ListItem, Button, } from 'react-native-elements'
 import Carousel from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
-
-
-class SingleRestaurant extends Component {
+class SingleService extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            url: 'https://la-patrona-app.herokuapp.com/restaurants',
-            restaurants: [],
-            activeSlide: 0,
+            url: 'https://lapatrona-app.herokuapp.com/services',
+            services: []
         };
     } // end of constructor
 
@@ -42,25 +38,24 @@ class SingleRestaurant extends Component {
     }
 
     render() {
-        const restaurant = this.props.route.params
+        const service = this.props.route.params
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.viewContainerStyle}>
                     <Carousel
                         // layout={'tinder'}
                         layout={'stack'}
-                        // layoutCardOffset={`${18}`}
+                        // layoutCardOffset={`18`}
                         ref={(c) => { this._carousel = c; }}
-                        data={restaurant.images}
+                        data={service.images}
                         renderItem={this.renderItem}
                         sliderWidth={width}
                         itemWidth={itemWidth}
                     />
 
-
                     <View style={styles.contentDataView}>
                         <View style={styles.infoView}>
-                            <Text style={styles.businessNameTextStyle}>{restaurant.business_name}</Text>
+                            <Text style={styles.businessNameTextStyle}>{service.business_name}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -70,7 +65,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.bioTextStyle}>{restaurant.bio}</Text>
+                            <Text style={styles.bioTextStyle}>{service.bio}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -80,11 +75,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(restaurant.business_address)
+                                    Linking.openURL(service.business_address)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>{restaurant.business_address}</Text>
+                            <Text style={styles.otherInfoTextStyle}>{service.business_address}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -94,11 +89,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(Platform.OS === 'android' ? Platform.OS = `tel:${restaurant.phonenumber}` : Platform.OS = `telprompt:${restaurant.phonenumber}`)
+                                    Linking.openURL(Platform.OS === 'android' ? Platform.OS = `tel:${service.phonenumber}` : Platform.OS = `telprompt:${service.phonenumber}`)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Numero: {restaurant.phonenumber}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Numero: {service.phonenumber}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -108,7 +103,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {restaurant.daybusinesshours === '' ? "N/A" : restaurant.daybusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {service.daybusinesshours === '' ? "N/A" : service.daybusinesshours}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -118,7 +113,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {restaurant.nightbusinesshours === '' ? "N/A" : restaurant.nightbusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {service.nightbusinesshours === '' ? "N/A": service.nightbusinesshours}</Text>
 
                         </View>
 
@@ -129,11 +124,11 @@ class SingleRestaurant extends Component {
                                 color="green"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(restaurant.website)
+                                    Linking.openURL(service.website)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>{restaurant.website}</Text>
+                            <Text style={styles.otherInfoTextStyle}>{service.website}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -143,11 +138,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/' + restaurant.facebook)
+                                    Linking.openURL('https://www.facebook.com/' + service.facebook)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>FB: {restaurant.facebook}</Text>
+                            <Text style={styles.otherInfoTextStyle}>FB: {service.facebook}</Text>
 
                         </View>
 
@@ -158,17 +153,15 @@ class SingleRestaurant extends Component {
                                 color="purple"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.instagram.com/' + restaurant.instagram)
+                                    Linking.openURL('https://www.instagram.com/' + service.instagram)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>IG: {restaurant.instagram}</Text>
+                            <Text style={styles.otherInfoTextStyle}>IG: {service.instagram}</Text>
                         </View>
 
-
-
                         <View style={styles.specialImageView}>
-                            <Image source={{ uri: restaurant.specialimage }} style={styles.specialImage} />
+                            <Image source={{ uri: service.specialimage }} style={styles.specialImage} />
                         </View>
 
 
@@ -256,4 +249,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SingleRestaurant;
+export default SingleService;

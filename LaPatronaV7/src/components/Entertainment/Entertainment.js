@@ -10,43 +10,43 @@ import {
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 
-class Restaurants extends Component {
+class Entertainment extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/restaurants',
-            restaurants: [],
+            url: 'https://lapatrona-app.herokuapp.com/entertainment',
+            entertainment: [],
             loaded: false
         };
     } // end of constructor
 
     async componentDidMount() {
-        const restaurantsData = await fetch(this.state.url);
-        const restaurants = await restaurantsData.json();
+        const data = await fetch(this.state.url);
+        const dataJson = await data.json();
 
-        this.setState({ restaurants: restaurants, loaded: true })
+        this.setState({ entertainment: dataJson, loaded: true })
 
     } // end of componentDidMount
 
-    renderRestaurants = () => {
-        return this.state.restaurants.map((restaurant, index) => {
+    renderEntertainment = () => {
+        return this.state.entertainment.map((item, index) => {
             return (
                 <View key={index}>
                     <Card
                         // title={restaurant.business_name}
-                        image={{ url: restaurant.mainimage }}>
+                        image={{ url: item.mainimage }}>
                         <Text style={styles.titleStyle}>
-                            {restaurant.business_name.toUpperCase()}
+                            {item.business_name.toUpperCase()}
                         </Text>
                         <Text style={ styles.subtitleStyle }>
-                            {restaurant.business_address}
+                            {item.business_address}
                         </Text>
                         <Button
                             buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, backgroundColor: '#F4362A' }}
                             title='VER'
                             raised
-                            onPress={() => this.props.navigation.push('SingleRestaurant', restaurant)}
+                            onPress={() => this.props.navigation.push('SingleEntertainment', item)}
                         // type="outline"
                         />
                     </Card>
@@ -62,7 +62,7 @@ class Restaurants extends Component {
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
 
                 <View>
-                    {this.renderRestaurants()}
+                    {this.renderEntertainment()}
                 </View>
             </ScrollView >
         );
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         // backgroundColor: '#16202f'
     },
     activityIndicatorView: {
-        flex: 1,
+        flex: 1, 
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Restaurants;
+export default Entertainment;

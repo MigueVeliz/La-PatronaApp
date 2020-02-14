@@ -14,17 +14,13 @@ import { Card, ListItem, Button, } from 'react-native-elements'
 import Carousel from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
-
-
-class SingleRestaurant extends Component {
+class SingleEntertainment extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            url: 'https://la-patrona-app.herokuapp.com/restaurants',
-            restaurants: [],
-            activeSlide: 0,
+            url: 'https://lapatrona-app.herokuapp.com/entertainment',
+            entertainment: []
         };
     } // end of constructor
 
@@ -42,25 +38,24 @@ class SingleRestaurant extends Component {
     }
 
     render() {
-        const restaurant = this.props.route.params
+        const entertainment = this.props.route.params
         return (
             <ScrollView style={styles.container}>
                 <View style={styles.viewContainerStyle}>
                     <Carousel
                         // layout={'tinder'}
                         layout={'stack'}
-                        // layoutCardOffset={`${18}`}
+                        // layoutCardOffset={`18`}
                         ref={(c) => { this._carousel = c; }}
-                        data={restaurant.images}
+                        data={entertainment.images}
                         renderItem={this.renderItem}
                         sliderWidth={width}
                         itemWidth={itemWidth}
                     />
 
-
                     <View style={styles.contentDataView}>
                         <View style={styles.infoView}>
-                            <Text style={styles.businessNameTextStyle}>{restaurant.business_name}</Text>
+                            <Text style={styles.businessNameTextStyle}>{entertainment.business_name}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -70,7 +65,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.bioTextStyle}>{restaurant.bio}</Text>
+                            <Text style={styles.bioTextStyle}>{entertainment.bio}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -80,11 +75,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(restaurant.business_address)
+                                    Linking.openURL(entertainment.business_address)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>{restaurant.business_address}</Text>
+                            <Text style={styles.otherInfoTextStyle}>{entertainment.business_address}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -94,11 +89,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(Platform.OS === 'android' ? Platform.OS = `tel:${restaurant.phonenumber}` : Platform.OS = `telprompt:${restaurant.phonenumber}`)
+                                    Linking.openURL(Platform.OS === 'android' ? Platform.OS = `tel:${entertainment.phonenumber}` : Platform.OS = `telprompt:${entertainment.phonenumber}`)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Numero: {restaurant.phonenumber}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Numero: {entertainment.phonenumber}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -108,7 +103,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {restaurant.daybusinesshours === '' ? "N/A" : restaurant.daybusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Lunes - Jueves: {entertainment.daybusinesshours === '' ? "N/A" : entertainment.daybusinesshours}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -118,7 +113,7 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {restaurant.nightbusinesshours === '' ? "N/A" : restaurant.nightbusinesshours}</Text>
+                            <Text style={styles.otherInfoTextStyle}>Viernes - Domingo: {entertainment.nightbusinesshours === '' ? "N/A": entertainment.nightbusinesshours}</Text>
 
                         </View>
 
@@ -129,11 +124,11 @@ class SingleRestaurant extends Component {
                                 color="green"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL(restaurant.website)
+                                    Linking.openURL(entertainment.website)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>{restaurant.website}</Text>
+                            <Text style={styles.otherInfoTextStyle}>{entertainment.website}</Text>
                         </View>
 
                         <View style={styles.infoView}>
@@ -143,11 +138,11 @@ class SingleRestaurant extends Component {
                                 color="blue"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.facebook.com/' + restaurant.facebook)
+                                    Linking.openURL('https://www.facebook.com/' + entertainment.facebook)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>FB: {restaurant.facebook}</Text>
+                            <Text style={styles.otherInfoTextStyle}>FB: {entertainment.facebook}</Text>
 
                         </View>
 
@@ -158,17 +153,15 @@ class SingleRestaurant extends Component {
                                 color="purple"
                                 // onPress={this.shareToFacebook}
                                 onPress={() =>
-                                    Linking.openURL('https://www.instagram.com/' + restaurant.instagram)
+                                    Linking.openURL('https://www.instagram.com/' + entertainment.instagram)
                                 }
                                 style={styles.socialNetwork}
                             />
-                            <Text style={styles.otherInfoTextStyle}>IG: {restaurant.instagram}</Text>
+                            <Text style={styles.otherInfoTextStyle}>IG: {entertainment.instagram}</Text>
                         </View>
 
-
-
                         <View style={styles.specialImageView}>
-                            <Image source={{ uri: restaurant.specialimage }} style={styles.specialImage} />
+                            <Image source={{ uri: entertainment.specialimage }} style={styles.specialImage} />
                         </View>
 
 
@@ -256,4 +249,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default SingleRestaurant;
+export default SingleEntertainment;

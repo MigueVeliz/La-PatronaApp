@@ -10,43 +10,46 @@ import {
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
 
-class Restaurants extends Component {
+class Gallery extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/restaurants',
-            restaurants: [],
+            url: 'https://lapatrona-app.herokuapp.com/gallery',
+            gallery: [],
             loaded: false
         };
     } // end of constructor
 
     async componentDidMount() {
-        const restaurantsData = await fetch(this.state.url);
-        const restaurants = await restaurantsData.json();
+        const data = await fetch(this.state.url);
+        const dataJson = await data.json();
 
-        this.setState({ restaurants: restaurants, loaded: true })
+        this.setState({ gallery: dataJson, loaded: true })
 
     } // end of componentDidMount
 
-    renderRestaurants = () => {
-        return this.state.restaurants.map((restaurant, index) => {
+    renderGallery = () => {
+        return this.state.gallery.map((item, index) => {
             return (
                 <View key={index}>
                     <Card
                         // title={restaurant.business_name}
-                        image={{ url: restaurant.mainimage }}>
+                        image={{ url: item.extrafield2 }}>
                         <Text style={styles.titleStyle}>
-                            {restaurant.business_name.toUpperCase()}
+                            {item.title.toUpperCase()}
                         </Text>
                         <Text style={ styles.subtitleStyle }>
-                            {restaurant.business_address}
+                            {item.datee}
+                        </Text>
+                        <Text style={ styles.fotosTextStyle }>
+                            Fotos: {item.images.length}
                         </Text>
                         <Button
                             buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, backgroundColor: '#F4362A' }}
                             title='VER'
                             raised
-                            onPress={() => this.props.navigation.push('SingleRestaurant', restaurant)}
+                            onPress={() => this.props.navigation.push('GalleryV2', item)}
                         // type="outline"
                         />
                     </Card>
@@ -62,7 +65,7 @@ class Restaurants extends Component {
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
 
                 <View>
-                    {this.renderRestaurants()}
+                    {this.renderGallery()}
                 </View>
             </ScrollView >
         );
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
         // backgroundColor: '#16202f'
     },
     activityIndicatorView: {
-        flex: 1,
+        flex: 1, 
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -87,10 +90,16 @@ const styles = StyleSheet.create({
     },
     subtitleStyle: {
         fontSize: 14, 
-        marginBottom: 15,
+        marginBottom: 1,
         // fontFamily: 'Avenir-Medium'
+    },
+    fotosTextStyle: {
+        color: "#38405F",
+        // color: "gray",
+        fontSize: 12,
+        marginBottom: 10
     }
 
 });
 
-export default Restaurants;
+export default Gallery;
