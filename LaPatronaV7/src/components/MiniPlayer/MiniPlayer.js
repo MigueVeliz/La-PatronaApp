@@ -62,7 +62,7 @@ class MiniPlayer extends Component {
                     {
                         this.props.showMiniPlayer ?
                             <View style={styles.player}>
-                                {this.props.showPlay ? (
+                                {this.state.showPlay ? (
                                     <Icon
                                         name="ios-play"
                                         size={40}

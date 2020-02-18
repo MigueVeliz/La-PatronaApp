@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch, useSelector } from "react-redux";
 import { hideMiniPlayer, showMiniPlayer } from '../../redux/actions/index';
 
-export default MainScreenV2 = ({navigation}) => {
+export default MainScreenV2 = ({ navigation }) => {
     const showPlay = useSelector(state => state.showPlay);
     const word = useSelector(state => state.word);
     const dispatch = useDispatch();
@@ -83,7 +83,7 @@ export default MainScreenV2 = ({navigation}) => {
             dispatch(showMiniPlayer(true))
         });
 
-        
+
 
         return hidePlayButton;
 
@@ -91,6 +91,7 @@ export default MainScreenV2 = ({navigation}) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.promotionNumberViewStyle}><Text style={styles.promotionNumberTextStyle}>Para Publicidad: 973.460.9693</Text></View>
             <View style={styles.topLogoView}>
                 <Image
                     style={styles.topLogo}
@@ -163,6 +164,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         // backgroundColor: '#16202f'
     },
+    promotionNumberViewStyle: {
+        // flex: 1
+
+    },
+    promotionNumberTextStyle: {
+        alignSelf: 'flex-end',
+        marginRight: 10,
+        color: 'gray'
+    },
     tempStyle: {
         color: 'red'
     },
@@ -176,13 +186,24 @@ const styles = StyleSheet.create({
         height: 70,
         resizeMode: 'contain',
         // backgroundColor: 'blue',
+        marginTop: 15
     },
     logoContainer: {
         flex: 4,
         // backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 45,
+        // marginTop: 45,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+
+        elevation: 11,
     },
     logo: {
         // width: 350,

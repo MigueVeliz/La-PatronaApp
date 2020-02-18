@@ -28,9 +28,9 @@ export default function App() {
                             iconName = focused
                                 ? 'ios-home'
                                 : 'ios-home';
-                        } else if (route.name === 'Restaurantes') {
+                        } else if (route.name === 'Restaurants') {
                             iconName = focused ? 'ios-restaurant' : 'ios-restaurant';
-                        } else if (route.name === 'Entretenimiento') {
+                        } else if (route.name === 'Entertainment') {
                             iconName = focused ? 'ios-videocam' : 'ios-videocam';
                         } else if (route.name === 'NightClubs') {
                             iconName = focused ? 'ios-business' : 'ios-business';
@@ -49,8 +49,8 @@ export default function App() {
                 }}
             >
                 <Tab.Screen name="Home" component={MainScreenV2} />
-                <Tab.Screen name="Restaurantes" component={RestaurantsStackNavigator} />
-                <Tab.Screen name="Entretenimiento" component={EntertainmentStackNavigator} />
+                <Tab.Screen name="Restaurants" component={RestaurantsStackNavigator} />
+                <Tab.Screen name="Entertainment" component={EntertainmentStackNavigator} />
                 <Tab.Screen name="NightClubs" component={NightClubsStackNavigator} />
                 <Tab.Screen name="Services" component={ServicesStackNavigator} />
                 <Tab.Screen name="Gallery" component={GalleryStackNavigator} />

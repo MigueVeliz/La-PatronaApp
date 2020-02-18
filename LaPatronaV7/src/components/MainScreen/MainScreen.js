@@ -20,8 +20,8 @@ import {
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
-// import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/Ionicons';
+// import Video from 'react-native-video';
 // import CountDown from 'react-native-countdown-component';
 import Moment from 'moment';
 import { extendMoment } from 'moment-range';
@@ -117,6 +117,7 @@ class MainScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.promotionNumberViewStyle}><Text style={promotionNumberTextStyle}>Promociones: 973.4609693</Text></View>
         <View style={styles.topLogoView}>
           <Image
             style={styles.topLogo}
