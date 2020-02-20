@@ -6,11 +6,12 @@ import {
     View,
     Image,
     Button,
-    Share,
+    // Share,
     Linking,
     Dimensions,
 } from 'react-native';
 
+import Share from 'react-native-share';
 
 import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -23,6 +24,9 @@ export default MainScreenV2 = ({ navigation }) => {
     const showPlay = useSelector(state => state.showPlay);
     const word = useSelector(state => state.word);
     const dispatch = useDispatch();
+
+    // State
+    const [data, setData] = useState(0)
 
     shareToFacebook = () => {
         Share.share(
@@ -67,13 +71,28 @@ export default MainScreenV2 = ({ navigation }) => {
     };//end of dialText
 
 
+    loadData = async () => {
+        const tempData = await fetch('https://lapatrona-app.herokuapp.com/mainscreen')
+        const data = await tempData.json()
+
+        setData(data[0])
+        // dispatch(saveSongs(music))
+
+
+    } // end of loadMusicData
+
     // I NEED TO MASTER THIS REACT HOOK!!!!!
     // I NEED TO MASTER THIS REACT HOOK!!!!!
     // I NEED TO MASTER THIS REACT HOOK!!!!!
     // I NEED TO MASTER THIS REACT HOOK!!!!!
     // I NEED TO MASTER THIS REACT HOOK!!!!!
     useEffect(() => {
+        async function fetchData() {
+            await loadData();
+
+        } 
         SplashScreen.hide();
+
 
         const hidePlayButton = navigation.addListener('blur', () => {
             dispatch(hideMiniPlayer(false))
@@ -83,27 +102,56 @@ export default MainScreenV2 = ({ navigation }) => {
             dispatch(showMiniPlayer(true))
         });
 
-
+        // brings songs from api
+        fetchData();
 
         return hidePlayButton;
 
     }, [navigation])
 
+    shareToFacebookV2 = () => {
+        const shareOptions = {
+            title: 'Share via',
+            message: 'some message',
+            url: 'https://mi-musica-app.s3.amazonaws.com/images/LaPatronaApp/DjStylesAlbumimage.jpg',
+            social: Share.Social.FACEBOOK,
+            //whatsAppNumber: "9199999999",  // country code + phone number(currently only works on Android)
+            filename: 'test', // only for base64 file in Android 
+        };
+
+
+        const optionsV2 = {
+            url: 'https://mi-musica-app.s3.amazonaws.com/images/LaPatronaApp/DjStylesAlbumimage.jpg',
+            message: 'Hello from La Patrona App',
+            social: Share.Social.FACEBOOK,
+            title: 'La Patrona App',
+            subject: 'Sintonizanos',
+
+        }
+
+        Share.open(optionsV2)
+            .then((res) => { console.log(res) })
+            .catch((err) => { err && console.log(err); })
+
+        // Share.shareSingle(shareOptions);
+    }
+
     return (
         <View style={styles.container}>
-            <View style={styles.promotionNumberViewStyle}><Text style={styles.promotionNumberTextStyle}>Para Publicidad: 973.460.9693</Text></View>
+            <View style={styles.promotionNumberViewStyle}><Text style={styles.promotionNumberTextStyle}>Para Publicidad: {data.promotionnumber}</Text></View>
             <View style={styles.topLogoView}>
                 <Image
                     style={styles.topLogo}
-                    source={{ uri: 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/mImUSICApng.png' }}
+                    // source={{ uri: 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/mImUSICApng.png' }}
+                    source={{ uri: data.mainimage }}
                 />
             </View>
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
                     source={{
-                        uri:
-                            'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/LaPatronaApp/LaPatronaDesign.jpeg',
+                        uri: data.mainsponsorimage,
+                            // 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/LaPatronaApp/LaPatronaDesign.jpeg',
                     }}
                 />
             </View>

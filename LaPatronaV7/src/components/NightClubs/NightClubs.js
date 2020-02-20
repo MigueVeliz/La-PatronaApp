@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 class NightClubs extends Component {
@@ -15,7 +17,9 @@ class NightClubs extends Component {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/nightclubs',
+            spinner: true,
+            // url: 'https://lapatrona-app.herokuapp.com/nightclubs',
+            url: 'https://la-patrona-app-ny.herokuapp.com/nightclubs',
             nightclubs: [],
             loaded: false
         };
@@ -25,7 +29,7 @@ class NightClubs extends Component {
         const data = await fetch(this.state.url);
         const dataJson = await data.json();
 
-        this.setState({ nightclubs: dataJson, loaded: true })
+        this.setState({ nightclubs: dataJson, loaded: true, spinner: !this.state.spinner })
 
     } // end of componentDidMount
 
@@ -60,7 +64,11 @@ class NightClubs extends Component {
         return (
             <ScrollView style={styles.container}>
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
-
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'LOADING...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <View>
                     {this.renderNightClubs()}
                 </View>

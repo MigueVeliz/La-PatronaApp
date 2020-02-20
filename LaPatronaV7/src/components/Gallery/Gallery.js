@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 class Gallery extends Component {
@@ -15,7 +16,9 @@ class Gallery extends Component {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/gallery',
+            spinner: true,
+            // url: 'https://lapatrona-app.herokuapp.com/gallery',
+            url: 'https://la-patrona-app-ny.herokuapp.com/gallery',
             gallery: [],
             loaded: false
         };
@@ -25,7 +28,7 @@ class Gallery extends Component {
         const data = await fetch(this.state.url);
         const dataJson = await data.json();
 
-        this.setState({ gallery: dataJson, loaded: true })
+        this.setState({ gallery: dataJson, loaded: true, spinner: !this.state.spinner })
 
     } // end of componentDidMount
 
@@ -49,7 +52,7 @@ class Gallery extends Component {
                             buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, backgroundColor: '#F4362A' }}
                             title='VER'
                             raised
-                            onPress={() => this.props.navigation.push('GalleryV2', item)}
+                            onPress={() => this.props.navigation.push('Images', item)}
                         // type="outline"
                         />
                     </Card>
@@ -63,7 +66,11 @@ class Gallery extends Component {
         return (
             <ScrollView style={styles.container}>
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
-
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'LOADING...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <View>
                     {this.renderGallery()}
                 </View>

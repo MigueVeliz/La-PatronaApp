@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 
 class Restaurants extends Component {
@@ -15,7 +17,9 @@ class Restaurants extends Component {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/restaurants',
+            spinner: true,
+            // url: 'https://lapatrona-app.herokuapp.com/restaurants',
+            url: 'https://la-patrona-app-ny.herokuapp.com/restaurants',
             restaurants: [],
             loaded: false
         };
@@ -25,7 +29,7 @@ class Restaurants extends Component {
         const restaurantsData = await fetch(this.state.url);
         const restaurants = await restaurantsData.json();
 
-        this.setState({ restaurants: restaurants, loaded: true })
+        this.setState({ restaurants: restaurants, loaded: true, spinner: !this.state.spinner })
 
     } // end of componentDidMount
 
@@ -33,13 +37,14 @@ class Restaurants extends Component {
         return this.state.restaurants.map((restaurant, index) => {
             return (
                 <View key={index}>
+
                     <Card
                         // title={restaurant.business_name}
                         image={{ url: restaurant.mainimage }}>
                         <Text style={styles.titleStyle}>
                             {restaurant.business_name.toUpperCase()}
                         </Text>
-                        <Text style={ styles.subtitleStyle }>
+                        <Text style={styles.subtitleStyle}>
                             {restaurant.business_address}
                         </Text>
                         <Button
@@ -60,7 +65,11 @@ class Restaurants extends Component {
         return (
             <ScrollView style={styles.container}>
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
-
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'LOADING...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <View>
                     {this.renderRestaurants()}
                 </View>
@@ -81,12 +90,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleStyle: {
-        fontSize: 18, 
+        fontSize: 18,
         marginBottom: 2,
         fontFamily: 'Avenir-Medium'
     },
     subtitleStyle: {
-        fontSize: 14, 
+        fontSize: 14,
         marginBottom: 15,
         // fontFamily: 'Avenir-Medium'
     }

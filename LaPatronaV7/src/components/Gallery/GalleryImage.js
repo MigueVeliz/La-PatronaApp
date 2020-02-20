@@ -6,6 +6,9 @@ import { Button } from 'native-base';
 import { Image } from 'react-native-animatable';
 // import * as Animatable from 'react-native-animatable';
 
+import { Card, ListItem, Icon } from 'react-native-elements'
+
+
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -13,30 +16,44 @@ export default class GalleryImage extends Component {
     render() {
         const { uri, index, onPress } = this.props;
         return (
-            <Button
-                onPress={() => onPress(index)}
-                style={{
-                      backgroundColor: 'transparent',
-                    borderRadius: 0,
-                    height: 80,
-                    width: WIDTH / 3,
-                }}
-            >
-                <Image
-                    animation={'bounceIn'}
-                    delay={100 * index}
-                    duration={500}
-                    source={{uri: uri}}
+            <>
+                <Button
+                    onPress={() => onPress(index)}
                     style={{
+                        backgroundColor: 'transparent',
+                        borderRadius: 0,
                         height: 80,
-                        left: 0,
-                        position: 'absolute',
-                        resizeMode: 'cover',
-                        top: 0,
                         width: WIDTH / 3,
                     }}
+                >
+                    <Image
+                        animation={'bounceIn'}
+                        delay={100 * index}
+                        duration={500}
+                        source={{ uri: uri }}
+                        style={{
+                            height: 80,
+                            left: 0,
+                            position: 'absolute',
+                            resizeMode: 'cover',
+                            top: 0,
+                            width: WIDTH / 3,
+                        }}
+                    />
+
+                <Icon
+                    name="logo-instagram"
+                    size={100}
+                    color="white"
+                    // onPress={this.shareToFacebook}
+                    onPress={() =>
+                        Linking.openURL('https://www.instagram.com/la_patrona_radio')
+                    }
+                    // style={styles.socialNetwork}
                 />
-            </Button>
+                </Button>
+
+            </>
         );
     }
 }

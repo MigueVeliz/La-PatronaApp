@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 class Services extends Component {
@@ -15,7 +16,9 @@ class Services extends Component {
         super(props);
 
         this.state = {
-            url: 'https://lapatrona-app.herokuapp.com/services',
+            spinner: true,
+            // url: 'https://lapatrona-app.herokuapp.com/services',
+            url: 'https://la-patrona-app-ny.herokuapp.com/services',
             services: [],
             loaded: false
         };
@@ -25,7 +28,7 @@ class Services extends Component {
         const data = await fetch(this.state.url);
         const dataJson = await data.json();
 
-        this.setState({ services: dataJson, loaded: true })
+        this.setState({ services: dataJson, loaded: true, spinner: !this.state.spinner })
 
     } // end of componentDidMount
 
@@ -60,7 +63,11 @@ class Services extends Component {
         return (
             <ScrollView style={styles.container}>
                 {/* <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicatorView} /> */}
-
+                <Spinner
+                    visible={this.state.spinner}
+                    textContent={'LOADING...'}
+                    textStyle={styles.spinnerTextStyle}
+                />
                 <View>
                     {this.renderServices()}
                 </View>
