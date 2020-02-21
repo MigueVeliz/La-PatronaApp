@@ -39,7 +39,7 @@ class NightClubs extends Component {
                 <View key={index}>
                     <Card
                         // title={restaurant.business_name}
-                        image={{ url: item.mainimage }}>
+                        image={{ uri: item.mainimage }}>
                         <Text style={styles.titleStyle}>
                             {item.business_name.toUpperCase()}
                         </Text>
@@ -69,7 +69,7 @@ class NightClubs extends Component {
                     textContent={'LOADING...'}
                     textStyle={styles.spinnerTextStyle}
                 />
-                <View>
+                <View style={styles.cardContainerStyle}>
                     {this.renderNightClubs()}
                 </View>
             </ScrollView >
@@ -87,6 +87,9 @@ const styles = StyleSheet.create({
         flex: 1, 
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    cardContainerStyle: {
+        marginBottom: 20,
     },
     titleStyle: {
         fontSize: 18, 

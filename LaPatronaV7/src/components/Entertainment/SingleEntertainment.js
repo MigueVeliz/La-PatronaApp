@@ -43,6 +43,7 @@ class SingleEntertainment extends Component {
             <ScrollView style={styles.container}>
                 <View style={styles.viewContainerStyle}>
                     <Carousel
+                        
                         // layout={'tinder'}
                         layout={'stack'}
                         // layoutCardOffset={`18`}

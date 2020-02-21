@@ -72,7 +72,8 @@ export default MainScreenV2 = ({ navigation }) => {
 
 
     loadData = async () => {
-        const tempData = await fetch('https://lapatrona-app.herokuapp.com/mainscreen')
+        // const tempData = await fetch('https://lapatrona-app.herokuapp.com/mainscreen')
+        const tempData = await fetch('https://la-patrona-app-ny.herokuapp.com/mainscreen')
         const data = await tempData.json()
 
         setData(data[0])
@@ -154,6 +155,7 @@ export default MainScreenV2 = ({ navigation }) => {
                             // 'https://filedn.com/lrjmguE73G2b4rRojAEKg3j/Images/LaPatronaApp/LaPatronaDesign.jpeg',
                     }}
                 />
+                <Text style={styles.mainSponsorTextStyle}>{data.mainsponsortext}</Text>
             </View>
             <View style={styles.socialNetworksContainer}>
                 <Icon
@@ -257,6 +259,12 @@ const styles = StyleSheet.create({
         // width: 350,
         width: width - 40,
         height: 250,
+        // resizeMode: 'contain'
+    },
+    mainSponsorTextStyle: {
+        alignSelf: "center",
+        marginTop: 20,
+        fontSize: 16
     },
     socialNetworksContainer: {
         flex: 2,

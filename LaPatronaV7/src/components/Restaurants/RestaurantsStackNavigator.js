@@ -10,7 +10,7 @@ function RestaurantsStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Restaurants" component={Restaurants} />
-      <Stack.Screen name="SingleRestaurant" component={SingleRestaurant} />
+      <Stack.Screen name="SingleRestaurant" options={{ title: '' }}component={SingleRestaurant} />
     </Stack.Navigator>
   );
 }

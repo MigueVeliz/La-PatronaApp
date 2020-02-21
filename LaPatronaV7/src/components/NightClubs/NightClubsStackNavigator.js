@@ -10,7 +10,7 @@ function NightClubsStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="NightClubs" component={NightClubs} />
-      <Stack.Screen name="SingleNightClub" component={SingleNightClub} />
+      <Stack.Screen name="SingleNightClub" options={{ title: '' }} component={SingleNightClub} />
     </Stack.Navigator>
   );
 }

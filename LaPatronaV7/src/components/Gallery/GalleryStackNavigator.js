@@ -14,7 +14,7 @@ function GalleryStackNavigator() {
       <Stack.Screen name="Gallery" component={Gallery} />
       <Stack.Screen name="SingleGallery" component={SingleGallery} />
 
-      <Stack.Screen name="Images" component={GalleryV2} />
+      <Stack.Screen name="Images"  component={GalleryV2} />
     </Stack.Navigator>
   );
 }

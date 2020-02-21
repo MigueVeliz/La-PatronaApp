@@ -10,7 +10,7 @@ function EntertainmentStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Entertainment" component={Entertainment} />
-      <Stack.Screen name="SingleEntertainment" component={SingleEntertainment} />
+      <Stack.Screen name="SingleEntertainment" options={{ title: '' }} component={SingleEntertainment} />
     </Stack.Navigator>
   );
 }

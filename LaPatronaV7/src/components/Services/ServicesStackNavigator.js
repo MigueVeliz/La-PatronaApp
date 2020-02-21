@@ -10,7 +10,7 @@ function ServicesStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Services" component={Services} />
-      <Stack.Screen name="SingleService" component={SingleService} />
+      <Stack.Screen name="SingleService" options={{ title: '' }} component={SingleService} />
     </Stack.Navigator>
   );
 }
